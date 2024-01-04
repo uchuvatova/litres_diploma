@@ -1,5 +1,3 @@
-import json
-
 import allure
 import requests
 from allure_commons.types import Severity
@@ -19,7 +17,7 @@ from pages.profile_page import ProfilePage
 class TestLogin:
 
     @allure.title("Успешный переход в профиль")
-    def test_redirect_to_profile(browser_management):
+    def test_redirect_to_profile(browser_setup):
         main_page = MainPage()
         with allure.step("Регистрация пользователя через API"):
             result: Response = requests.post(url=API_URL_REGISTER,
@@ -44,6 +42,5 @@ class TestLogin:
             main_page.click_button_profile()
         # THEN
         with allure.step("Открытие страницы Профиль"):
-            profile_page = ProfilePage()
             browser.element(".Avatar-module__topContent_3OnBY").should(have.exact_text(
                 NAME))

@@ -16,7 +16,7 @@ from pages.main_page import MainPage
 class TestLogin:
 
     @allure.title("Успешный логин")
-    def test_success_login(browser_management):
+    def test_success_login(browser_setup):
         with allure.step("Регистрация пользователя через API"):
             result: Response = requests.post(url=API_URL_REGISTER,
                                              json={"email": EMAIL, "password": PASSWORD,
@@ -40,7 +40,7 @@ class TestLogin:
             main_page.should_be_visible_button_profile()
 
     @allure.title("Логин с неправильным паролем")
-    def test_success_login(browser_management):
+    def test_success_login(browser_setup):
         with allure.step("Регистрация пользователя через API"):
             result: Response = requests.post(url=API_URL_REGISTER,
                                              json={"email": EMAIL, "password": PASSWORD,
@@ -66,7 +66,7 @@ class TestLogin:
             main_page.should_be_not_visible_button_profile()
 
     @allure.title("Логин без пароля")
-    def test_success_login(browser_management):
+    def test_success_login(browser_setup):
         with allure.step("Регистрация пользователя через API"):
             result: Response = requests.post(url=API_URL_REGISTER,
                                              json={"email": EMAIL, "password": PASSWORD,

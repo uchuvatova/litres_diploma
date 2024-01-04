@@ -14,7 +14,7 @@ from pages.main_page import MainPage
 class TestRegistration:
 
     @allure.title("Успешная регистрация")
-    def test_success_registration(browser_management):
+    def test_success_registration(browser_setup):
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -40,7 +40,7 @@ class TestRegistration:
             main_page.should_be_visible_button_profile()
 
     @allure.title("Регистрация с отличающимися паролями")
-    def test_registration_with_different_password(browser_management):
+    def test_registration_with_different_password(browser_setup):
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -68,7 +68,7 @@ class TestRegistration:
             main_page.should_be_not_visible_button_profile()
 
     @allure.title("Регистрация без пароля")
-    def test_registration_without_password(browser_management):
+    def test_registration_without_password(browser_setup):
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()

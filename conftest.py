@@ -67,7 +67,7 @@ API_URL_LOGIN = API_URL + '/auth/login'
 
 
 @pytest.fixture(scope='session', autouse=True)
-def browser_management():
+def browser_setup():
     browser.config.base_url = 'https://www.litres.ru'
     browser.config.set_value_by_js = True
     browser.config.timeout = 2.0
