@@ -1,2 +1,2 @@
-ui_tests/allure-results/
+.allure-results
 .env
