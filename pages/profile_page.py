@@ -1,5 +1,4 @@
-from selene.support.conditions import be, have
-from selene.support.shared import browser
+from selene import browser
 
 
 class ProfilePage:

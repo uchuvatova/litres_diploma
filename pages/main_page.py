@@ -1,5 +1,5 @@
+from selene import browser
 from selene.support.conditions import be, have
-from selene.support.shared import browser
 
 
 class MainPage:
@@ -10,7 +10,7 @@ class MainPage:
         browser.open("/")
 
     def click_login_on_navbar(self):
-        browser.element('[data-test-id=tab-login]').click()
+        browser.element('[href="/pages/login/"]').click()
 
     def fill_email(self, email):
         browser.element('#modal [name=email]').should(be.blank).type(email)
