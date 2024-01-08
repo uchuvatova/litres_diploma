@@ -3,3 +3,5 @@ requests==2.31.0
 jsonschema==4.20.0
 selene==2.0.0rc4
 allure-pytest==2.9.45
+python-dotenv~=1.0.0
+selenium~=4.16.0
