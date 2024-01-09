@@ -14,7 +14,7 @@ from pages.main_page import MainPage
 @allure.feature("UI")
 @allure.story("Зарегистрированный и авторизованный пользователь входит в профиль")
 @allure.link("https://litres.ru", name="Главная страница Литрес")
-class TestLogin:
+class TestProfile:
     endpoint = '/auth/register'
     @allure.title("Успешный переход в профиль")
     def test_redirect_to_profile(self, browser_setup, endpoint=endpoint):
@@ -39,6 +39,6 @@ class TestLogin:
             main_page.close_authorization_popup_close_button()
             main_page.click_button_profile()
         # THEN
-        with allure.step("Открытие страницы Профиль"):
+        with allure.step("Убедиться, что открыта страница профиля авторизованного пользователя"):
             browser.element(".Avatar-module__topContent_3OnBY").should(have.exact_text(
                 NAME))
