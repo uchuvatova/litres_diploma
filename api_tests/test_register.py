@@ -28,6 +28,7 @@ class TestRegistration:
     @allure.title('Успешная регистрация пользователя по email')
     @allure.feature('Регистрация по email')
     @allure.label('owner', 'irauchuvatova')
+    @allure.label('layer', 'API')
     @allure.tag('smoke', 'regress', 'API', 'registration')
     @allure.severity('critical')
     def test_post_register_user_successful(self, endpoint=endpoint):
@@ -68,6 +69,7 @@ class TestRegistration:
     @allure.title('Неуспешная регистрация существующего пользователя по email')
     @allure.feature('Регистрация по email')
     @allure.label('owner', 'irauchuvatova')
+    @allure.label('layer', 'API')
     @allure.tag('smoke', 'regress', 'API', 'registration')
     @allure.severity('critical')
     def test_post_register_exist_user_unsuccessful(self, exist_user, endpoint=endpoint):
