@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.options import Options
 
 from utils import attach
 
-@pytest.fixture(scope='function', autouse=True)
+
 def random_char(char_num):
     return ''.join(random.choice(string.ascii_lowercase) for _ in range(char_num))
 
