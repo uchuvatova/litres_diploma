@@ -11,7 +11,7 @@ from pages.main_page import MainPage
 @allure.severity(Severity.CRITICAL)
 @allure.label("owner", "irauchuvatova")
 @allure.label('layer', 'UI')
-@allure.feature("Задачи в репозитории")
+@allure.feature("UI")
 @allure.story("Пользователь входит в личный кабинет с зарегистированным email")
 @allure.link("https://litres.ru", name="Главная страница Литрес")
 class TestLogin:
