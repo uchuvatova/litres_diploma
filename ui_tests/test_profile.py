@@ -19,16 +19,16 @@ class TestProfile:
     @allure.title("Успешный переход в профиль")
     def test_redirect_to_profile(self, browser_setup, endpoint=endpoint):
         main_page = MainPage()
-        with allure.step("Регистрация пользователя через API"):
-            result: Response = requests.post(url=API_URL + endpoint,
+        with allure.step("Регистрация и логин пользователя через API"):
+            registration: Response = requests.post(url=API_URL + endpoint,
                                              json={"email": EMAIL, "password": PASSWORD,
                                                    "mail_subscriptions_allowed": True})
         with allure.step("Логин пользователя через API"):
-            result: Response = requests.post(url=API_URL_LOGIN,
+            login: Response = requests.post(url=API_URL_LOGIN,
                                              json={"login": EMAIL, "password": PASSWORD})
 
         with allure.step("Получить cookie SID из API"):
-            sid = result.json().get('payload').get('data').get('sid')
+            sid = login.json().get('payload').get('data').get('sid')
         with allure.step("Передать cookie в браузер"):
             main_page.open()
             browser.driver.add_cookie({"name": "SID", "value": sid})
