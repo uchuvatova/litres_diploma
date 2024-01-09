@@ -37,6 +37,8 @@ class TestLogin:
         with allure.step("Нажать Войти на модальном окне Ввести пароль"):
             main_page.click_enter_on_modal()
             main_page.close_authorization_popup_close_button()
+        with allure.step("Перезагрузить страницу"):
+            browser.driver.refresh()
         # THEN
         with allure.step("Появление кнопки Профиль"):
             main_page.should_be_visible_button_profile()
