@@ -16,7 +16,7 @@ class MainPage:
         browser.element('#modal [name=email]').should(be.blank).type(email)
 
     def checkbox_agree_on_modal(self):
-        browser.element('#modal .Checkbox__container_1eUNp').click()
+        browser.element('#modal .Checkbox__label_2hlWt').click()
 
     def fill_password(self, password):
         browser.element('#modal [name=regPwd]').should(be.blank).type(password)
