@@ -17,7 +17,7 @@ class TestWishlist:
     @allure.title('Добавление неавторизованным пользователем книги в Отложенные')
     @allure.feature('Неавторизованный пользователь')
     @allure.label('owner', 'irauchuvatova')
-    @allure.label('API', 'API')
+    @allure.label('layer', 'API')
     @allure.tag('smoke', 'regress', 'API', 'wishlist')
     @allure.severity('critical')
     def test_put_add_to_wishlist(self, endpoint=endpoint):
