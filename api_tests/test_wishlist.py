@@ -2,7 +2,9 @@ import json
 import logging
 
 import allure
+import requests
 from allure_commons.types import AttachmentType
+from requests import Response
 
 from conftest import *
 
