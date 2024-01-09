@@ -3,7 +3,7 @@ import requests
 from allure_commons.types import Severity
 from requests import Response
 
-from conftest import *
+from ui_tests.conftest import *
 from pages.main_page import MainPage
 
 

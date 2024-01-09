@@ -2,8 +2,8 @@ import allure
 import requests
 from allure_commons.types import Severity
 from requests import Response
-from selene import browser, have
-from conftest import *
+from selene import have
+from ui_tests.conftest import *
 from pages.main_page import MainPage
 
 

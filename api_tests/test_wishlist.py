@@ -6,7 +6,7 @@ import requests
 from allure_commons.types import AttachmentType
 from requests import Response
 
-from conftest import *
+from ui_tests.conftest import *
 
 
 @allure.epic('API Отложенных книг')

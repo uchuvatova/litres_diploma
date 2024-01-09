@@ -1,7 +1,7 @@
 import allure
 from allure_commons.types import Severity
 
-from conftest import PASSWORD, EMAIL, DIFFERENT_PASSWORD
+from ui_tests.conftest import PASSWORD, EMAIL, DIFFERENT_PASSWORD
 from pages.main_page import MainPage
 
 
