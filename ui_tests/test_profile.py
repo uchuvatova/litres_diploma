@@ -10,6 +10,7 @@ from pages.main_page import MainPage
 @allure.tag("web")
 @allure.severity(Severity.CRITICAL)
 @allure.label("owner", "irauchuvatova")
+@allure.label('layer', 'UI')
 @allure.feature("Задачи в репозитории")
 @allure.story("Зарегистрированный и авторизованный пользователь входит в профиль")
 @allure.link("https://litres.ru", name="Главная страница Литрес")

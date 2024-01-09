@@ -106,6 +106,7 @@ class TestRegistration:
     @allure.title('Неуспешная регистрация пользователя по email с паролем меньше 5 символов')
     @allure.feature('Регистрация по email')
     @allure.label('owner', 'irauchuvatova')
+    @allure.label('layer', 'API')
     @allure.tag('smoke', 'regress', 'API', 'registration')
     @allure.severity('critical')
     def test_post_register_user_short_password(self, endpoint=endpoint):

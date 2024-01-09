@@ -57,6 +57,7 @@ class TestWishlist:
     @allure.title('Удаление неавторизованным пользователем книги из Отложенные')
     @allure.feature('Неавторизованный пользователь')
     @allure.label('owner', 'irauchuvatova')
+    @allure.label('layer', 'API')
     @allure.tag('smoke', 'regress', 'API', 'wishlist')
     @allure.severity('critical')
     def test_delete_from_wishlist(self, endpoint=endpoint):

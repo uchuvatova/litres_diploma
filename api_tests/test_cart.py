@@ -18,6 +18,7 @@ class TestCart:
     @allure.title('Просмотр пустой корзины неавторизованного пользователя')
     @allure.feature('Неавторизованный пользователь')
     @allure.label('owner', 'irauchuvatova')
+    @allure.label('layer', 'API')
     @allure.tag('smoke', 'regress', 'API', 'cart')
     @allure.severity('critical')
     def test_get_status_empty_cart(self, endpoint=endpoint):
