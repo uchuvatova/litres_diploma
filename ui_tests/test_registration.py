@@ -102,7 +102,7 @@ class TestRegistration:
             main_page.should_be_not_visible_button_profile()
 
     @allure.title("Регистрация с длинным паролем")
-    def test_registration_with_different_password(self, browser_setup):
+    def test_registration_with_long_password(self, browser_setup):
         email = random_char(7) + "@rover.info"
         password = random_char(101)
         main_page = MainPage()
