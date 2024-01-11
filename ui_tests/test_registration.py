@@ -101,7 +101,7 @@ class TestRegistration:
         with allure.step("Кнопка Профиль не появляется"):
             main_page.should_be_not_visible_button_profile()
 
-    @allure.title("Регистрация с длинным паролем")
+    @allure.title("Ошибка при регистрации с паролем больше 100 символов")
     def test_registration_with_long_password(self, browser_setup):
         email = random_char(7) + "@rover.info"
         password = random_char(101)
@@ -119,14 +119,14 @@ class TestRegistration:
             main_page.checkbox_agree_on_modal()
         with allure.step("Нажать на Продолжить на модальном окне Создать профиль"):
             main_page.click_continue_after_email()
-        with allure.step("Заполнить пароль"):
+        with allure.step("Заполнить пароль значением длиной > 100 символов"):
             main_page.fill_password(password)
-        with allure.step("Повторить пароль"):
+        with allure.step("Повторить пароль значением длиной > 100 символов"):
             main_page.repeat_password(password)
         with allure.step("Нажать Сохранить на модальном окне Задать пароль"):
             main_page.click_enter_on_modal()
         # THEN
-        with allure.step("Появление предупреждения, что пароль слишком длинный"):
+        with allure.step("Появление предупреждения Введите не больше 100 символов"):
             main_page.should_be_error_long_password()
         with allure.step("Кнопка Профиль не появляется"):
             main_page.should_be_not_visible_button_profile()
