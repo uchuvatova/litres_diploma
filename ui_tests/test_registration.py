@@ -1,10 +1,7 @@
-import string
-import random
-
 import allure
 from allure_commons.types import Severity
 
-from ui_tests.conftest import PASSWORD, EMAIL, DIFFERENT_PASSWORD, random_char
+from ui_tests.conftest import random_char
 from pages.main_page import MainPage
 
 
@@ -16,7 +13,6 @@ from pages.main_page import MainPage
 @allure.story("Пользователь регистируется с новым email")
 @allure.link("https://litres.ru", name="Главная страница Литрес")
 class TestRegistration:
-    endpoint = '/auth/register'
     @allure.title("Успешная регистрация")
     def test_success_registration(self, browser_setup):
         email = random_char(7) + "@rover.info"
@@ -45,7 +41,7 @@ class TestRegistration:
         with allure.step("Появление кнопки Профиль"):
             main_page.should_be_visible_button_profile()
 
-    @allure.title("Регистрация с отличающимися паролями")
+    @allure.title("Регистрация с несовпадающими паролями")
     def test_registration_with_different_password(self, browser_setup):
         email = random_char(7) + "@rover.info"
         password = random_char(7) + "1"
@@ -101,7 +97,7 @@ class TestRegistration:
         with allure.step("Кнопка Профиль не появляется"):
             main_page.should_be_not_visible_button_profile()
 
-    @allure.title("Ошибка при регистрации с паролем больше 100 символов")
+    @allure.title("Регистрация с паролем больше 100 символов")
     def test_registration_with_long_password(self, browser_setup):
         email = random_char(7) + "@rover.info"
         password = random_char(101)
