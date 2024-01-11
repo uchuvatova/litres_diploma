@@ -2,7 +2,7 @@ import allure
 from allure_commons.types import Severity
 
 from tests.ui.conftest import random_char
-from litres_diploma_tests.pages.main_page import MainPage
+from litres_diploma_tests.pages.web.main_page import MainPage
 
 
 @allure.tag("web")
@@ -93,7 +93,7 @@ class TestRegistration:
             main_page.click_enter_on_modal()
         # THEN
         with allure.step("Появление предупреждения Введите пароль"):
-            main_page.should_be_not_empty_password()
+            main_page.should_be_error_empty_password()
         with allure.step("Кнопка Профиль не появляется"):
             main_page.should_be_not_visible_button_profile()
 

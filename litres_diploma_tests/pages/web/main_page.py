@@ -39,30 +39,25 @@ class MainPage:
     def should_be_visible_button_profile(self):
         browser.element('[data-testid=header__profile-button]').should(be.visible)
 
-    def click_button_profile(self):
-        browser.element('[data-testid=header__profile-button]').click()
-
     def should_be_not_visible_button_profile(self):
         browser.element('[data-testid=header__profile-button]').should(be.not_.visible)
-
-    def should_be_error_different_password(self):
-        browser.element('.ControlInput-module__input__error_2jXOB').should(have.exact_text(
-            "Пароли должны быть одинаковыми"))
-
-    def should_be_not_empty_password(self):
-        browser.element('.ControlInput-module__input__error_2jXOB').should(have.exact_text(
-            "Введите пароль"))
-
-    def should_be_error_wrong_password(self):
-        browser.element('.ControlInput-module__input__error_2jXOB').should(have.exact_text(
-            "Неверное сочетание логина и пароля"))
-
-    def should_be_error_long_password(self):
-        browser.element('.ControlInput-module__input__error_2jXOB').should(have.exact_text(
-            "Введите не больше 100 символов"))
 
     def close_authorization_popup_close_button(self):
         browser.element('[data-test-id=authorization-popup__close-button]').click()
 
     def refresh_page(self):
         browser.driver.refresh()
+
+    #ERRORS
+    error_element = browser.element('.ControlInput-module__input__error_2jXOB')
+    def should_be_error_different_password(self, error_element=error_element):
+        error_element.should(have.exact_text("Пароли должны быть одинаковыми"))
+
+    def should_be_error_empty_password(self, error_element=error_element):
+        error_element.should(have.exact_text("Введите пароль"))
+
+    def should_be_error_wrong_password(self, error_element=error_element):
+        error_element.should(have.exact_text("Неверное сочетание логина и пароля"))
+
+    def should_be_error_long_password(self, error_element=error_element):
+        error_element.should(have.exact_text("Введите не больше 100 символов"))
