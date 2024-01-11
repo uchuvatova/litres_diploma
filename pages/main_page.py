@@ -36,9 +36,6 @@ class MainPage:
     def click_enter_on_modal(self):
         browser.element('#modal [type=submit]').click()
 
-    def click_enter_on_modal(self):
-        browser.element('#modal [type=submit]').click()
-
     def should_be_visible_button_profile(self):
         browser.element('[data-testid=header__profile-button]').should(be.visible)
 
