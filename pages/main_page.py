@@ -60,5 +60,9 @@ class MainPage:
         browser.element('.ControlInput-module__input__error_2jXOB').should(have.exact_text(
             "Неверное сочетание логина и пароля"))
 
+    def should_be_error_long_password(self):
+        browser.element('.ControlInput-module__input__error_2jXOB').should(have.exact_text(
+            "Введите не больше 100 символов"))
+
     def close_authorization_popup_close_button(self):
         browser.element('[data-test-id=authorization-popup__close-button]').click()
