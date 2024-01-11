@@ -48,6 +48,8 @@ def browser_setup(request):
                               options=options)
     browser.config.driver = driver
     browser.config.base_url = 'https://www.litres.ru'
+    browser.config.window_height = 1920
+    browser.config.window_width = 1800
 
     yield browser
 
