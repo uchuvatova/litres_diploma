@@ -1,9 +1,9 @@
 import allure
 import requests
 from allure_commons.types import Severity
-from requests import Response
+from selene import browser
 
-from ui_tests.conftest import *
+from ui_tests.conftest import API_URL, EMAIL, PASSWORD, DIFFERENT_PASSWORD
 from pages.main_page import MainPage
 
 
@@ -15,13 +15,13 @@ from pages.main_page import MainPage
 @allure.story("Пользователь входит в личный кабинет с зарегистированным email")
 @allure.link("https://litres.ru", name="Главная страница Литрес")
 class TestLogin:
-    endpoint = '/auth/register'
     @allure.title("Успешный логин")
-    def test_success_login(self, browser_setup, endpoint=endpoint):
+    def test_success_login(self, browser_setup):
         with allure.step("Регистрация пользователя через API"):
-            result: Response = requests.post(url=API_URL + endpoint,
-                                             json={"email": EMAIL, "password": PASSWORD,
-                                                   "mail_subscriptions_allowed": True})
+            requests.post(url=f'{API_URL}/auth/register',
+                          json={"email": EMAIL,
+                                "password": PASSWORD,
+                                "mail_subscriptions_allowed": True})
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -44,11 +44,12 @@ class TestLogin:
             main_page.should_be_visible_button_profile()
 
     @allure.title("Логин с неправильным паролем")
-    def test_unsuccess_login_wrong_password(self, browser_setup, endpoint=endpoint):
+    def test_unsuccess_login_wrong_password(self, browser_setup):
         with allure.step("Регистрация пользователя через API"):
-            result: Response = requests.post(url=API_URL + endpoint,
-                                             json={"email": EMAIL, "password": PASSWORD,
-                                                   "mail_subscriptions_allowed": True})
+            requests.post(url=f'{API_URL}/auth/register',
+                          json={"email": EMAIL,
+                                "password": PASSWORD,
+                                "mail_subscriptions_allowed": True})
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -70,11 +71,12 @@ class TestLogin:
             main_page.should_be_not_visible_button_profile()
 
     @allure.title("Логин без пароля")
-    def test_unsuccess_login_without_password(self, browser_setup, endpoint=endpoint):
+    def test_unsuccess_login_without_password(self, browser_setup):
         with allure.step("Регистрация пользователя через API"):
-            result: Response = requests.post(url=API_URL + endpoint,
-                                             json={"email": EMAIL, "password": PASSWORD,
-                                                   "mail_subscriptions_allowed": True})
+            requests.post(url=f'{API_URL}/auth/register',
+                          json={"email": EMAIL,
+                                "password": PASSWORD,
+                                "mail_subscriptions_allowed": True})
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
