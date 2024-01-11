@@ -63,3 +63,6 @@ class MainPage:
 
     def close_authorization_popup_close_button(self):
         browser.element('[data-test-id=authorization-popup__close-button]').click()
+
+    def refresh_page(self):
+        browser.driver.refresh()

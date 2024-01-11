@@ -1,9 +1,8 @@
 import allure
 import requests
 from allure_commons.types import Severity
-from selene import browser
 
-from ui_tests.conftest import API_URL, EMAIL, PASSWORD, DIFFERENT_PASSWORD
+from ui_tests.conftest import EMAIL, PASSWORD,DIFFERENT_PASSWORD, API_URL
 from pages.main_page import MainPage
 
 
@@ -38,7 +37,7 @@ class TestLogin:
             main_page.click_enter_on_modal()
             main_page.close_authorization_popup_close_button()
         with allure.step("Перезагрузить страницу"):
-            browser.driver.refresh()
+            main_page.refresh_page()
         # THEN
         with allure.step("Появление кнопки Профиль"):
             main_page.should_be_visible_button_profile()
