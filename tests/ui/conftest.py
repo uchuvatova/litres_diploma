@@ -8,7 +8,7 @@ from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from utils import attach
+from litres_diploma_tests.utils import attach
 
 
 def random_char(char_num):

@@ -2,8 +2,8 @@ import allure
 import requests
 from allure_commons.types import Severity
 
-from ui_tests.conftest import EMAIL, PASSWORD,DIFFERENT_PASSWORD, API_URL
-from pages.main_page import MainPage
+from tests.ui.conftest import EMAIL, PASSWORD,DIFFERENT_PASSWORD, API_URL
+from litres_diploma_tests.pages.main_page import MainPage
 
 
 @allure.tag("web")

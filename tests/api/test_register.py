@@ -2,12 +2,13 @@ import logging
 
 import allure
 import jsonschema
+import pytest
 import requests
 from allure_commons.types import AttachmentType
 from requests import Response
 
-from ui_tests.conftest import *
 from schemas.load_schema import *
+from tests.ui.conftest import API_URL, EMAIL, PASSWORD, FOUR_SYMBOLS_PASSWORD
 
 
 @allure.epic('API регистрации')
@@ -22,7 +23,7 @@ class TestRegistration:
             "password": PASSWORD,
             "mail_subscriptions_allowed": True}
 
-        result: Response = requests.post(url=API_URL + endpoint, json=exist_user)
+        requests.post(url=API_URL + endpoint, json=exist_user)
         return exist_user
 
     @allure.title('Успешная регистрация пользователя по email')

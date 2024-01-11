@@ -6,8 +6,8 @@ import requests
 from allure_commons.types import AttachmentType
 from requests import Response
 
-from ui_tests.conftest import *
 from schemas.load_schema import *
+from tests.ui.conftest import API_URL
 
 
 @allure.epic('API корзины покупок')

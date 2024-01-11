@@ -1,8 +1,8 @@
 import allure
 from allure_commons.types import Severity
 
-from ui_tests.conftest import random_char
-from pages.main_page import MainPage
+from tests.ui.conftest import random_char
+from litres_diploma_tests.pages.main_page import MainPage
 
 
 @allure.tag("web")
