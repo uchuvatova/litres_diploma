@@ -1,8 +1,9 @@
 import allure
 from allure_commons.types import Severity
 
-from tests.ui.conftest import random_char
 from litres_diploma_tests.pages.web.main_page import MainPage
+from litres_diploma_tests.utils.data import user_to_registrate_ui, \
+    user_to_registrate_with_long_password_ui, user_to_registrate_diff_pass_ui, user_to_registrate_without_pass_ui
 
 
 @allure.tag("web")
@@ -15,8 +16,7 @@ from litres_diploma_tests.pages.web.main_page import MainPage
 class TestRegistration:
     @allure.title("Успешная регистрация")
     def test_success_registration(self, browser_setup):
-        email = random_char(7) + "@rover.info"
-        password = random_char(7) + "1"
+        user = user_to_registrate_ui
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -24,7 +24,7 @@ class TestRegistration:
         with allure.step("Нажать кнопку Войти в навбаре"):
             main_page.click_login_on_navbar()
         with allure.step("Заполнить email на модальном окне Войти"):
-            main_page.fill_email(email)
+            main_page.fill_email(user.email)
         with allure.step("Нажать на Продолжить на модальном окне Войти"):
             main_page.click_continue()
         with allure.step("Отметить чекбокс с согласием на модальном окне Создать профиль"):
@@ -32,9 +32,9 @@ class TestRegistration:
         with allure.step("Нажать на Продолжить на модальном окне Создать профиль"):
             main_page.click_continue_after_email()
         with allure.step("Заполнить пароль"):
-            main_page.fill_password(password)
+            main_page.fill_password(user.password)
         with allure.step("Повторить пароль"):
-            main_page.repeat_password(password)
+            main_page.repeat_password(user.password)
         with allure.step("Нажать Сохранить на модальном окне Задать пароль"):
             main_page.click_enter_on_modal()
         # THEN
@@ -43,9 +43,8 @@ class TestRegistration:
 
     @allure.title("Регистрация с несовпадающими паролями")
     def test_registration_with_different_password(self, browser_setup):
-        email = random_char(7) + "@rover.info"
-        password = random_char(7) + "1"
-        different_password = password + "!"
+        user = user_to_registrate_diff_pass_ui
+        different_password = user.password + "!"
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -53,7 +52,7 @@ class TestRegistration:
         with allure.step("Нажать кнопку Войти в навбаре"):
             main_page.click_login_on_navbar()
         with allure.step("Заполнить email на модальном окне Войти"):
-            main_page.fill_email(email)
+            main_page.fill_email(user.email)
         with allure.step("Нажать на Продолжить на модальном окне Войти"):
             main_page.click_continue()
         with allure.step("Отметить чекбокс с согласием на модальном окне Создать профиль"):
@@ -61,7 +60,7 @@ class TestRegistration:
         with allure.step("Нажать на Продолжить на модальном окне Создать профиль"):
             main_page.click_continue_after_email()
         with allure.step("Заполнить пароль"):
-            main_page.fill_password(password)
+            main_page.fill_password(user.password)
         with allure.step("Ввести отличающийся пароль"):
             main_page.repeat_password(different_password)
         with allure.step("Нажать Сохранить на модальном окне Задать пароль"):
@@ -74,7 +73,7 @@ class TestRegistration:
 
     @allure.title("Регистрация без пароля")
     def test_registration_without_password(self, browser_setup):
-        email = random_char(7) + "@rover.info"
+        user = user_to_registrate_without_pass_ui
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -82,7 +81,7 @@ class TestRegistration:
         with allure.step("Нажать кнопку Войти в навбаре"):
             main_page.click_login_on_navbar()
         with allure.step("Заполнить email на модальном окне Войти"):
-            main_page.fill_email(email)
+            main_page.fill_email(user.email)
         with allure.step("Нажать на Продолжить на модальном окне Войти"):
             main_page.click_continue()
         with allure.step("Отметить чекбокс с согласием на модальном окне Создать профиль"):
@@ -99,8 +98,7 @@ class TestRegistration:
 
     @allure.title("Регистрация с паролем больше 100 символов")
     def test_registration_with_long_password(self, browser_setup):
-        email = random_char(7) + "@rover.info"
-        password = random_char(101)
+        user = user_to_registrate_with_long_password_ui
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -108,7 +106,7 @@ class TestRegistration:
         with allure.step("Нажать кнопку Войти в навбаре"):
             main_page.click_login_on_navbar()
         with allure.step("Заполнить email на модальном окне Войти"):
-            main_page.fill_email(email)
+            main_page.fill_email(user.email)
         with allure.step("Нажать на Продолжить на модальном окне Войти"):
             main_page.click_continue()
         with allure.step("Отметить чекбокс с согласием на модальном окне Создать профиль"):
@@ -116,9 +114,9 @@ class TestRegistration:
         with allure.step("Нажать на Продолжить на модальном окне Создать профиль"):
             main_page.click_continue_after_email()
         with allure.step("Заполнить пароль значением длиной > 100 символов"):
-            main_page.fill_password(password)
+            main_page.fill_password(user.password)
         with allure.step("Повторить пароль значением длиной > 100 символов"):
-            main_page.repeat_password(password)
+            main_page.repeat_password(user.password)
         with allure.step("Нажать Сохранить на модальном окне Задать пароль"):
             main_page.click_enter_on_modal()
         # THEN

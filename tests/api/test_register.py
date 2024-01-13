@@ -8,7 +8,7 @@ import requests
 from allure_commons.types import AttachmentType
 from requests import Response
 
-from litres_diploma_tests.utils.data import API_URL, PASSWORD, EMAIL, FOUR_SYMBOLS_PASSWORD, new_user_for_api, \
+from litres_diploma_tests.utils.data import API_URL, new_user_for_api, \
     new_user_with_short_password_for_api
 from schemas.load_schema import SUCCESSFUL_REGISTER_USER_PATH, load_schema, REGISTER_EXIST_USER_PATH, \
     UNSUCCESSFUL_REGISTER_USER_PATH

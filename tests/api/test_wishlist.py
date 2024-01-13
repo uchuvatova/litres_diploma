@@ -68,7 +68,8 @@ class TestWishlist:
             added_to_wishlist: Response = requests.put(url=API_URL + endpoint + f'{book_id}')
 
         with allure.step(f'Отправить DELETE-запрос на {endpoint} для удаления добавленной книги из Отложенных'):
-            result: Response = requests.delete(url=API_URL + endpoint + f'{book_id}', headers={'Wishlist': f'{book_id}'})
+            result: Response = requests.delete(url=API_URL + endpoint + f'{book_id}',
+                                               headers={'Wishlist': f'{book_id}'})
 
         with allure.step('Проверить, что API возвращает 204 код ответа'):
             assert result.status_code == 204
