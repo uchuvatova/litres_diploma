@@ -2,7 +2,7 @@ import allure
 from allure_commons.types import Severity
 
 from litres_diploma_tests.pages.web.main_page import MainPage
-from litres_diploma_tests.utils.data import EMAIL, PASSWORD, DIFFERENT_PASSWORD, registration_user_for_ui
+from litres_diploma_tests.utils.data import EMAIL, PASSWORD, DIFFERENT_PASSWORD, registration_user_for_ui_login
 
 
 @allure.tag("web")
@@ -16,7 +16,7 @@ class TestLogin:
     @allure.title("Успешный логин")
     def test_success_login(self, browser_setup):
         with allure.step("Регистрация пользователя через API"):
-            registration_user_for_ui()
+            registration_user_for_ui_login()
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -41,7 +41,7 @@ class TestLogin:
     @allure.title("Логин с неправильным паролем")
     def test_unsuccess_login_wrong_password(self, browser_setup):
         with allure.step("Регистрация пользователя через API"):
-            registration_user_for_ui()
+            registration_user_for_ui_login()
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -65,7 +65,7 @@ class TestLogin:
     @allure.title("Логин без пароля")
     def test_unsuccess_login_without_password(self, browser_setup):
         with allure.step("Регистрация пользователя через API"):
-            registration_user_for_ui()
+            registration_user_for_ui_login()
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
