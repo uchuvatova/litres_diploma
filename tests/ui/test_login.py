@@ -2,8 +2,8 @@ import allure
 import requests
 from allure_commons.types import Severity
 
-from tests.ui.conftest import EMAIL, PASSWORD,DIFFERENT_PASSWORD, API_URL
 from litres_diploma_tests.pages.web.main_page import MainPage
+from litres_diploma_tests.utils.data import API_URL, EMAIL, PASSWORD, DIFFERENT_PASSWORD, registration_user_for_ui
 
 
 @allure.tag("web")
@@ -17,10 +17,7 @@ class TestLogin:
     @allure.title("Успешный логин")
     def test_success_login(self, browser_setup):
         with allure.step("Регистрация пользователя через API"):
-            requests.post(url=f'{API_URL}/auth/register',
-                          json={"email": EMAIL,
-                                "password": PASSWORD,
-                                "mail_subscriptions_allowed": True})
+            registration_user_for_ui()
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -45,10 +42,7 @@ class TestLogin:
     @allure.title("Логин с неправильным паролем")
     def test_unsuccess_login_wrong_password(self, browser_setup):
         with allure.step("Регистрация пользователя через API"):
-            requests.post(url=f'{API_URL}/auth/register',
-                          json={"email": EMAIL,
-                                "password": PASSWORD,
-                                "mail_subscriptions_allowed": True})
+            registration_user_for_ui()
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
@@ -72,10 +66,7 @@ class TestLogin:
     @allure.title("Логин без пароля")
     def test_unsuccess_login_without_password(self, browser_setup):
         with allure.step("Регистрация пользователя через API"):
-            requests.post(url=f'{API_URL}/auth/register',
-                          json={"email": EMAIL,
-                                "password": PASSWORD,
-                                "mail_subscriptions_allowed": True})
+            registration_user_for_ui()
         main_page = MainPage()
         with allure.step("Открыть главную страницу"):
             main_page.open()
