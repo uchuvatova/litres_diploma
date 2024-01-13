@@ -1,3 +1,4 @@
+import json
 import logging
 
 import allure
@@ -7,8 +8,9 @@ import requests
 from allure_commons.types import AttachmentType
 from requests import Response
 
-from schemas.load_schema import *
-from tests.ui.conftest import API_URL, EMAIL, PASSWORD, FOUR_SYMBOLS_PASSWORD
+from litres_diploma_tests.utils.data import API_URL, PASSWORD, EMAIL, FOUR_SYMBOLS_PASSWORD
+from schemas.load_schema import SUCCESSFUL_REGISTER_USER_PATH, load_schema, REGISTER_EXIST_USER_PATH, \
+    UNSUCCESSFUL_REGISTER_USER_PATH
 
 
 @allure.epic('API регистрации')
