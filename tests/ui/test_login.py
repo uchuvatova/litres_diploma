@@ -1,9 +1,8 @@
 import allure
-import requests
 from allure_commons.types import Severity
 
 from litres_diploma_tests.pages.web.main_page import MainPage
-from litres_diploma_tests.utils.data import API_URL, EMAIL, PASSWORD, DIFFERENT_PASSWORD, registration_user_for_ui
+from litres_diploma_tests.utils.data import EMAIL, PASSWORD, DIFFERENT_PASSWORD, registration_user_for_ui
 
 
 @allure.tag("web")
