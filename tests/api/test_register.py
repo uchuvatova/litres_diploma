@@ -8,7 +8,8 @@ import requests
 from allure_commons.types import AttachmentType
 from requests import Response
 
-from litres_diploma_tests.utils.data import API_URL, PASSWORD, EMAIL, FOUR_SYMBOLS_PASSWORD
+from litres_diploma_tests.utils.data import API_URL, PASSWORD, EMAIL, FOUR_SYMBOLS_PASSWORD, new_user_for_api, \
+    new_user_with_short_password_for_api
 from schemas.load_schema import SUCCESSFUL_REGISTER_USER_PATH, load_schema, REGISTER_EXIST_USER_PATH, \
     UNSUCCESSFUL_REGISTER_USER_PATH
 
@@ -20,10 +21,7 @@ class TestRegistration:
 
     @pytest.fixture(scope='function')
     def exist_user(self, endpoint=endpoint):
-        exist_user = {
-            "email": EMAIL,
-            "password": PASSWORD,
-            "mail_subscriptions_allowed": True}
+        exist_user = new_user_for_api()
 
         requests.post(url=API_URL + endpoint, json=exist_user)
         return exist_user
@@ -38,11 +36,7 @@ class TestRegistration:
         schema = load_schema(SUCCESSFUL_REGISTER_USER_PATH)
 
         with allure.step('Создать нового пользователя'):
-            new_user = {
-                "email": EMAIL,
-                "password": PASSWORD,
-                "mail_subscriptions_allowed": True}
-
+            new_user = new_user_for_api()
         with allure.step(f'Отправить POST-запрос на {endpoint} для регистрации нового пользователя'):
             result: Response = requests.post(url=API_URL + endpoint, json=new_user)
 
@@ -77,7 +71,7 @@ class TestRegistration:
     @allure.severity('critical')
     def test_post_register_exist_user_unsuccessful(self, exist_user, endpoint=endpoint):
         schema = load_schema(REGISTER_EXIST_USER_PATH)
-        with allure.step('Создать нового пользователя'):
+        with allure.step('Создать нового пользователя, совпадающего с уже созданным'):
             user = exist_user
 
         with allure.step(f'Отправить POST-запрос на {endpoint} для регистрации существующего пользователя'):
@@ -116,11 +110,8 @@ class TestRegistration:
     @allure.severity('critical')
     def test_post_register_user_short_password(self, endpoint=endpoint):
         schema = load_schema(UNSUCCESSFUL_REGISTER_USER_PATH)
-        with allure.step('Создать пользователя с паролем из 4 символов'):
-            new_user = {
-                "email": EMAIL,
-                "password": FOUR_SYMBOLS_PASSWORD,
-                "mail_subscriptions_allowed": True}
+        with allure.step('Создать пользователя с паролем меньше 5 символов'):
+            new_user = new_user_with_short_password_for_api()
 
         with allure.step(f'Отправить POST-запрос на {endpoint} для регистрации нового пользователя'):
             result: Response = requests.post(url=API_URL + endpoint, json=new_user)
