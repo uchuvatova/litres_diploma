@@ -1,3 +1,4 @@
+import json
 import logging
 
 import allure
@@ -6,8 +7,8 @@ import requests
 from allure_commons.types import AttachmentType
 from requests import Response
 
-from schemas.load_schema import *
-from tests.ui.conftest import API_URL
+from litres_diploma_tests.utils.data import API_URL
+from schemas.load_schema import STATUS_CART_PATH, load_schema
 
 
 @allure.epic('API корзины покупок')
