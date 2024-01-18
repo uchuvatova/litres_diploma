@@ -6,7 +6,7 @@ import requests
 from allure_commons.types import AttachmentType
 from requests import Response
 
-from litres_diploma_tests.utils.data import API_RECOMMENDED, API_URL
+from tests.api.conftest import API_URL
 
 
 @allure.epic('API Отложенных книг')
@@ -22,7 +22,7 @@ class TestWishlist:
     @allure.severity('critical')
     def test_put_add_to_wishlist(self, endpoint=endpoint):
         with allure.step('Получить id книги  из раздела Рекомендации для вас'):
-            book_list: Response = requests.get(url=API_RECOMMENDED)
+            book_list: Response = requests.get(url=API_URL + '/arts/personal-recommendations')
             book_id = book_list.json().get('payload').get("data")[0].get('id')
 
         with allure.step(f'Отправить PUT-запрос на {endpoint} для добавления книги в Отложенные'):
@@ -62,7 +62,7 @@ class TestWishlist:
     @allure.severity('critical')
     def test_delete_from_wishlist(self, endpoint=endpoint):
         with allure.step('Получить id книги из раздела Рекомендации для вас'):
-            book_list: Response = requests.get(url=API_RECOMMENDED)
+            book_list: Response = requests.get(API_URL + '/arts/personal-recommendations')
             book_id = book_list.json().get('payload').get("data")[0].get('id')
         with allure.step('Добавить книгу в Отложенные'):
             added_to_wishlist: Response = requests.put(url=API_URL + endpoint + f'{book_id}')
