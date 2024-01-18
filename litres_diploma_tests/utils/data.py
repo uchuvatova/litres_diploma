@@ -18,7 +18,6 @@ FOUR_SYMBOLS_PASSWORD = random_char(4)
 LONG_PASSWORD = random_char(101)
 API_URL = 'https://api.litres.ru/foundation/api'
 API_URL_LOGIN = API_URL + '/auth/login'
-API_RECOMMENDED = API_URL + '/arts/personal-recommendations'
 mail_subscriptions_allowed = [True, False]
 
 
